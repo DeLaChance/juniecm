@@ -6,27 +6,80 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <changeSet id="1" author="junie">
-        <createTable tableName="configuration_items">
-            <column name="id" type="INTEGER">
-                <constraints primaryKey="true" autoIncrement="true"/>
+        <createTable tableName="employees">
+            <column name="id" type="VARCHAR(50)">
+                <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="key" type="VARCHAR(255)">
+            <column name="email" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="value" type="VARCHAR(255)">
+        </createTable>
+
+        <createTable tableName="configuration_items">
+            <column name="id" type="VARCHAR(50)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="DATETIME"/>
+            <column name="owner_id" type="VARCHAR(50)">
+                <constraints foreignKeyName="fk_ci_owner" referencedTableName="employees" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="configuration_item_relations">
+            <column name="parent_id" type="VARCHAR(50)">
+                <constraints nullable="false" foreignKeyName="fk_ci_relation_parent" referencedTableName="configuration_items" referencedColumnNames="id"/>
+            </column>
+            <column name="child_id" type="VARCHAR(50)">
+                <constraints nullable="false" foreignKeyName="fk_ci_relation_child" referencedTableName="configuration_items" referencedColumnNames="id"/>
+            </column>
+            <primaryKey columnNames="parent_id, child_id" constraintName="pk_ci_relations"/>
         </createTable>
     </changeSet>
 
     <changeSet id="2" author="junie">
+        <insert tableName="employees">
+            <column name="id" value="EMP01"/>
+            <column name="email" value="lucien@example.com"/>
+        </insert>
+        <insert tableName="employees">
+            <column name="id" value="EMP02"/>
+            <column name="email" value="alice@example.com"/>
+        </insert>
+
         <insert tableName="configuration_items">
-            <column name="key" value="app.name"/>
-            <column name="value" value="juniecm"/>
+            <column name="id" value="ABC01"/>
+            <column name="name" value="Laptop Lucien"/>
+            <column name="type" value="hardware"/>
+            <column name="start_date" value="2026-03-01T08:32:01"/>
+            <column name="owner_id" value="EMP01"/>
         </insert>
         <insert tableName="configuration_items">
-            <column name="key" value="app.version"/>
-            <column name="value" value="1.0.0"/>
+            <column name="id" value="ABC02"/>
+            <column name="name" value="Windows License"/>
+            <column name="type" value="software"/>
+            <column name="start_date" value="2026-03-01T08:32:01"/>
+            <column name="owner_id" value="EMP01"/>
+        </insert>
+        <insert tableName="configuration_items">
+            <column name="id" value="ABC03"/>
+            <column name="name" value="MacBook Alice"/>
+            <column name="type" value="hardware"/>
+            <column name="start_date" value="2026-01-15T10:00:00"/>
+            <column name="owner_id" value="EMP02"/>
+        </insert>
+
+        <insert tableName="configuration_item_relations">
+            <column name="parent_id" value="ABC01"/>
+            <column name="child_id" value="ABC02"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
