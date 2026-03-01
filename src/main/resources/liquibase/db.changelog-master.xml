@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1" author="junie">
+        <createTable tableName="configuration_items">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" autoIncrement="true"/>
+            </column>
+            <column name="key" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="value" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="junie">
+        <insert tableName="configuration_items">
+            <column name="key" value="app.name"/>
+            <column name="value" value="juniecm"/>
+        </insert>
+        <insert tableName="configuration_items">
+            <column name="key" value="app.version"/>
+            <column name="value" value="1.0.0"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
