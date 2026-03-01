@@ -12,3 +12,6 @@
 ## 3. Location
 - Write queries to separate files in `/src/main/resources/sql`
 - Queries should use named parameters, e.g. `:id` rather than question marks
+
+## 4. Use WITH
+- Use common table expressions `WITH` instead of nested JOIN's

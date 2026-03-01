@@ -402,5 +402,5 @@ Follow the Java naming conventions.
 -   **Explanation:** Text blocks improve readability, reduce escaping, and preserve intended formatting. They also support strip indentation and trailing newline control, making them ideal for embedded resources and templates.
 
 ## 11. Versioning
-- Use Java 25. 
+- Use Java 26. 
 - Use latest supported GA features.
