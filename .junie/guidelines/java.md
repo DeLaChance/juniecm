@@ -14,6 +14,8 @@ These are the general guidelines for writing Java code.
 - [8. Collections](#8-collections)
 - [9. Date and Time](#9-date-and-time)
 - [10. Strings](#10-strings)
+- [11. Versioning](#11-versioning)
+- [12. Package structure](#12-packaging)
 
 ## 1. Naming Conventions
 
@@ -404,3 +406,10 @@ Follow the Java naming conventions.
 ## 11. Versioning
 - Use Java 26. 
 - Use latest supported GA features.
+
+## 12. Package structure
+- Put application generic code under `com.example.cm.config`
+- Per domain (e.g. configuration item), create 3 packages: adapter, domain, service 
+- Adapter will have the rest controlller and DTO objects.
+- Domain will have the domain objects and entities. And the repository.
+- Service will have the business logic in a service.
