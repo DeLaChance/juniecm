@@ -36,12 +36,11 @@
 
         <createTable tableName="configuration_item_relations">
             <column name="parent_id" type="VARCHAR(50)">
-                <constraints nullable="false" foreignKeyName="fk_ci_relation_parent" referencedTableName="configuration_items" referencedColumnNames="id"/>
+                <constraints nullable="false" foreignKeyName="fk_ci_relation_parent" primaryKey="true" referencedTableName="configuration_items" referencedColumnNames="id"/>
             </column>
             <column name="child_id" type="VARCHAR(50)">
-                <constraints nullable="false" foreignKeyName="fk_ci_relation_child" referencedTableName="configuration_items" referencedColumnNames="id"/>
+                <constraints nullable="false" foreignKeyName="fk_ci_relation_child" primaryKey="true" referencedTableName="configuration_items" referencedColumnNames="id"/>
             </column>
-            <primaryKey columnNames="parent_id, child_id" constraintName="pk_ci_relations"/>
         </createTable>
     </changeSet>
 

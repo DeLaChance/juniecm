@@ -6,6 +6,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,8 +32,8 @@ class JdbcConfigurationItemRepository implements ConfigurationItemRepository {
           .id(rs.getString("id"))
           .name(rs.getString("name"))
           .type(rs.getString("type"))
-          .startDate(rs.getTimestamp("start_date") != null ? rs.getTimestamp("start_date").toLocalDateTime() : null)
-          .endDate(rs.getTimestamp("end_date") != null ? rs.getTimestamp("end_date").toLocalDateTime() : null)
+          .startDate(rs.getString("start_date") == null ? null : LocalDateTime.parse(rs.getString("start_date")))
+          .endDate(rs.getString("end_date") == null ? null : LocalDateTime.parse(rs.getString("end_date")))
           .ownerId(rs.getString("owner_id"))
           .build();
     });

@@ -1,4 +1,5 @@
 ## Backend
+*.db
 *#
 *.iml
 *.ipr
