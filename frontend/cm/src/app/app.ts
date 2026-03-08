@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ConfigurationOverviewComponent } from './configuration-item/components/configuration-overview.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [ConfigurationOverviewComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

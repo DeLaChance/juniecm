@@ -28,79 +28,8 @@ interface FlatConfigurationItem extends ConfigurationItem {
     MatButtonModule,
     FormsModule
   ],
-  template: `
-    <div class="container">
-      <h1>Configuration Items Overview</h1>
-
-      <mat-form-field appearance="outline" class="filter-field">
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Search CI..." #input>
-      </mat-form-field>
-
-      <table mat-table [dataSource]="filteredDataSource()" class="mat-elevation-z8">
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *mat-header-cell> Name </th>
-          <td mat-cell *mat-cell="let element" [style.padding-left.px]="element.level * 24">
-            <div class="name-cell">
-              @if (element.hasChildren) {
-                <button mat-icon-button (click)="toggle(element)" class="toggle-button">
-                  <mat-icon>{{ element.isExpanded ? 'expand_more' : 'chevron_right' }}</mat-icon>
-                </button>
-              } @else {
-                <span class="spacer"></span>
-              }
-
-              @if (editingId() === element.id) {
-                <mat-form-field appearance="outline" class="edit-field">
-                  <input matInput [(ngModel)]="editName" (keyup.enter)="save(element)" (blur)="cancelEdit()">
-                </mat-form-field>
-              } @else {
-                <span class="ci-name" (click)="startEdit(element)">{{ element.name }}</span>
-              }
-            </div>
-          </td>
-        </ng-container>
-
-        <!-- Type Column -->
-        <ng-container matColumnDef="type">
-          <th mat-header-cell *mat-header-cell> Type </th>
-          <td mat-cell *mat-cell="let element"> {{ element.type }} </td>
-        </ng-container>
-
-        <!-- Start Date Column -->
-        <ng-container matColumnDef="startDate">
-          <th mat-header-cell *mat-header-cell> Start Date </th>
-          <td mat-cell *mat-cell="let element"> {{ element.startDate }} </td>
-        </ng-container>
-
-        <!-- End Date Column -->
-        <ng-container matColumnDef="endDate">
-          <th mat-header-cell *mat-header-cell> End Date </th>
-          <td mat-cell *mat-cell="let element"> {{ element.endDate || '-' }} </td>
-        </ng-container>
-
-        <tr mat-header-row *mat-header-rowDef="displayedColumns"></tr>
-        <tr mat-row *mat-rowDef="let row; columns: displayedColumns;"></tr>
-
-        <!-- Row shown when there is no matching data. -->
-        <tr class="mat-row" *mat-noDataRow>
-          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-        </tr>
-      </table>
-    </div>
-  `,
-  styles: [`
-    .container { padding: 24px; }
-    .filter-field { width: 100%; margin-bottom: 16px; }
-    table { width: 100%; }
-    .name-cell { display: flex; align-items: center; }
-    .toggle-button { width: 40px; height: 40px; margin-right: 4px; }
-    .spacer { width: 44px; display: inline-block; }
-    .ci-name { cursor: pointer; padding: 4px 8px; border-radius: 4px; }
-    .ci-name:hover { background-color: rgba(0,0,0,0.04); }
-    .edit-field { margin-top: 16px; margin-bottom: -16px; }
-  `],
+  templateUrl: './configuration-overview.component.html',
+  styleUrl: './configuration-overview.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConfigurationOverviewComponent implements OnInit {
