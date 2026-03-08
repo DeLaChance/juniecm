@@ -1,5 +1,6 @@
 package com.example.cm.configuration;
 
+import com.example.cm.config.LiquibaseConfig;
 import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
@@ -15,6 +16,6 @@ import java.lang.annotation.Target;
 @ActiveProfiles("test")
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@Import(LiquibaseTestConfig.class)
+@Import(LiquibaseConfig.class)
 public @interface IntegrationTest {
 }

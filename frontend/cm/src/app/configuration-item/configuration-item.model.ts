@@ -6,3 +6,8 @@ export interface ConfigurationItem {
   endDate: string | null;
   children?: ConfigurationItem[];
 }
+
+export interface ConfigurationItemResponse {
+  data: ConfigurationItem[];
+  totalCount: number;
+}

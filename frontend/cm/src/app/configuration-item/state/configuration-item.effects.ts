@@ -14,7 +14,7 @@ export class ConfigurationItemEffects {
       ofType(ConfigurationItemActions.loadOverview),
       switchMap(() =>
         this.ciService.getOverview().pipe(
-          map((items) => ConfigurationItemActions.loadOverviewSuccess({ items })),
+          map((overview) => ConfigurationItemActions.loadOverviewSuccess({ items: overview.data })),
           catchError((error) =>
             of(ConfigurationItemActions.loadOverviewFailure({ error: error.message }))
           )

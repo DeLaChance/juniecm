@@ -1,5 +1,18 @@
 # Configuration Management app
-A configuration management (CM) application to keep track of software and hardware resources within a company.
+A configuration management (CM) application to keep track of software and hardware resources within a company. It was 
+built using A.I. Agent JUnie from JetBrains. Code was generated using A.I., but the code was manually fixed and patched 
+afterwards.
+
+The application displays a nested table structure of configuration items (CI's), which are pieces of hardware or software 
+within a company. These have relationships to one another, e.g. a laptop can have Windows (OS) installed onto it.
+
+![Home page](screenshot_homepage.png)
+
+It was meant to be a proof of concept to demonstrate the capabilities of generating code using A.I.
+
+## To run the application
+
+`mvn clean install; java -jar target/cm-0.0.1-SNAPSHOT.jar` and then open http://localhost:8080/.
 
 ## Frontend Layout
 It should have a single webpage under `/overview`: 
