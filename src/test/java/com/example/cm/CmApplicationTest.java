@@ -1,9 +1,9 @@
 package com.example.cm;
 
-import com.example.cm.configuration.IntegrationTest;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@IntegrationTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CmApplicationTest {
 
   @Test
