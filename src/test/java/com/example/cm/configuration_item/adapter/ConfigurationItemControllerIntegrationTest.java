@@ -1,15 +1,12 @@
 package com.example.cm.configuration_item.adapter;
 
 import com.example.cm.configuration.IntegrationTest;
-import liquibase.integration.spring.SpringLiquibase;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.client.EntityExchangeResult;
-import org.springframework.test.web.servlet.client.ExchangeResult;
 import org.springframework.test.web.servlet.client.RestTestClient;
-import tools.jackson.databind.ObjectMapper;
 
 import java.util.List;
 import java.util.Map;
@@ -32,7 +29,7 @@ class ConfigurationItemControllerIntegrationTest {
             .returnResult(ConfigurationItemDTO[].class);
     ConfigurationItemDTO[] items = response.getResponseBody();
 
-      assertThat(response.getStatus().is2xxSuccessful()).isTrue();
-      assertThat(items).hasSize(3);
+    assertThat(response.getStatus().is2xxSuccessful()).isTrue();
+    assertThat(items).hasSize(3);
   }
 }
