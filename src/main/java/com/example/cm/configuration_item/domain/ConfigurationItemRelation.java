@@ -12,6 +12,13 @@ public class ConfigurationItemRelation {
   public String getParentId() { return parentId; }
   public String getChildId() { return childId; }
 
+  public static ConfigurationItemRelation from(java.util.Map<String, Object> map) {
+    return new ConfigurationItemRelation(
+        (String) map.get("parent_id"),
+        (String) map.get("child_id")
+    );
+  }
+
   public static Builder builder() {
     return new Builder();
   }

@@ -1,5 +1,6 @@
 package com.example.cm.configuration_item.domain;
 
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.core.io.Resource;
@@ -27,25 +28,13 @@ class JdbcConfigurationItemRepository implements ConfigurationItemRepository {
 
   @Override
   public List<ConfigurationItem> findAll() {
-    return jdbcTemplate.query(findAllSql, (rs, rowNum) -> {
-      return ConfigurationItem.builder()
-          .id(rs.getString("id"))
-          .name(rs.getString("name"))
-          .type(rs.getString("type"))
-          .startDate(rs.getString("start_date") == null ? null : LocalDateTime.parse(rs.getString("start_date")))
-          .endDate(rs.getString("end_date") == null ? null : LocalDateTime.parse(rs.getString("end_date")))
-          .ownerId(rs.getString("owner_id"))
-          .build();
-    });
+    return jdbcTemplate.queryForList(findAllSql, new MapSqlParameterSource())
+            .stream().map(ConfigurationItem::from).toList();
   }
 
   @Override
   public List<ConfigurationItemRelation> findAllRelations() {
-    return jdbcTemplate.query(findAllRelationsSql, (rs, rowNum) -> {
-      return ConfigurationItemRelation.builder()
-          .parentId(rs.getString("parent_id"))
-          .childId(rs.getString("child_id"))
-          .build();
-    });
+    return jdbcTemplate.queryForList(findAllRelationsSql, new MapSqlParameterSource())
+        .stream().map(ConfigurationItemRelation::from).toList();
   }
 }
