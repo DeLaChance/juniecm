@@ -5,11 +5,11 @@ A configuration management (CM) application to keep track of software and hardwa
 It should have a single webpage under `/overview`: 
 
 - with an overview of all configuration items (CI) listed
-- it should have a nested table structure
+- it should have a nested table structure, using indentation to 
 - the table should be sortable and filterable
 - the name column should be editable, the rest is read-only
 
-It should get the list of configuration items from `GET /api/configuration_items`.
+It should get the list of configuration items from `GET /api/v1/configuration_items/overview`.
 
 ## BE layout
 Data for the table should be exposed as an api `GET /api/configuration_items`:
